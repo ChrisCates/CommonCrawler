@@ -46,7 +46,7 @@ func main() {
 			f, _ := os.Open("crawl-data/" + file.Name())
 			scanner := bufio.NewScanner(f)
 
-			data, _ := os.Open("match-data/" + file.Name())
+			data, _ := os.Create("match-data/" + file.Name())
 			matches := 0
 			warcData := ""
 
