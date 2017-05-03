@@ -2,6 +2,8 @@
 ## A pragmatic and fast way to crawl Common Crawl with Golang.
 ### By Chris Cates &amp; Licensed under MIT.
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/gocrawl)](https://goreportcard.com/report/github.com/ChrisCates/gocrawl)
+
 ## How does it work?
 
 1. Simply run `go run extract.go` in the root directory.
