@@ -1,11 +1,11 @@
-# Crawl.go
+# Common Crawler
 
 ## A simple way to extract data from Common Crawl
 
 This repository has been revitalized with better logging and organization of respective components for extraction.
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/gocrawl)](https://goreportcard.com/report/github.com/ChrisCates/gocrawl)
-[![Build Status](https://travis-ci.org/ChrisCates/crawl.go.svg?branch=master)](https://travis-ci.org/ChrisCates/crawl.go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/CommonCrawler)](https://goreportcard.com/report/github.com/ChrisCates/CommonCrawler)
+[![Build Status](https://travis-ci.org/ChrisCates/CommonCrawler.svg?branch=master)](https://travis-ci.org/ChrisCates/CommonCrawler)
 
 ## Dependencies
 
