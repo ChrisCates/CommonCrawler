@@ -1,18 +1,63 @@
-# Go Crawl
-## A pragmatic and fast way to crawl Common Crawl with Golang.
-### By Chris Cates &amp; Licensed under MIT.
+# Crawl.go
+
+## A simple way to extract data from Common Crawl
+
+This repository has been revitalized with better logging and organization of respective components for extraction.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/gocrawl)](https://goreportcard.com/report/github.com/ChrisCates/gocrawl)
+[![Build Status](https://travis-ci.org/ChrisCates/crawl.go.svg?branch=master)](https://travis-ci.org/ChrisCates/crawl.go)
 
-## How does it work?
+## Dependencies
 
-1. Simply run `go run extract.go` in the root directory.
-2. It will extract all files with matches for "chiropractor"
-3. Feel free to tinker with the code to extract what you need.
-4. Works with .WET, .WARC and .WAT files.
+```bash
+go get -u github.com/logrusorgru/aurora # for colors
+```
 
-## Why not multithreaded?
+## Running + Configuring
 
-Could easily use multi threading to optimize this project however the biggest bottleneck is the network not the go language itself.
+1. To run the application:
 
-If you're CURLing into a Hadoop cluster. Then highly suggest optimizing this code with multithreading.
+```bash
+# Will run the application
+go run src/*.go
+```
+
+2. Configure desired outputs and paths in `src/config.go`:
+
+```golang
+// Config is the preset variables for your extractor
+type Config struct {
+    baseURI     string
+    wetPaths    string
+    dataFolder  string
+    matchFolder string
+    start       int
+    stop        int
+}
+
+//Defaults
+Config{
+    start:       0,
+    stop:        5,
+    baseURI:     "https://commoncrawl.s3.amazonaws.com/",
+    wetPaths:    path.Join(cwd, "wet.paths"),
+    dataFolder:  path.Join(cwd, "/output/crawl-data"),
+    matchFolder: path.Join(cwd, "/output/match-data"),
+}
+```
+
+3. Useful scripts:
+
+```bash
+# clean.sh cleans up default output folders
+sh clean.sh
+
+# extract.sh runs the extracting application
+sh extract.sh
+```
+
+### Additional Notes
+
+* MIT Licensed :heart:
+
+* Need help with things? Email hello@chriscates.ca

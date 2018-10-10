@@ -1,0 +1,10 @@
+language: go
+
+go:
+  - tip
+
+before_install:
+  - go get github.com/logrusorgru/aurora
+
+script:
+  - go run src/*.go
