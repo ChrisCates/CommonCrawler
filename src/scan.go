@@ -33,15 +33,23 @@ func scan(config Config) {
 		index++
 
 		filePath := path.Join(config.dataFolder, "wetfile_"+strconv.Itoa(index)+".wet.gz")
+
+		fmt.Printf("Download uri %s", uri)
+		err := download(uri, filePath)
+		if err != nil {
+			fmt.Println(aurora.Red(fmt.Sprintf("Download was not successfull: %s", err)))
+			continue
+		}
+
 		extracted := true
 
 		if _, err := os.Stat(filePath); os.IsNotExist(err) {
-			extracted = extract(uri, filePath)
+			extracted = extract(filePath)
 		} else {
 			fmt.Println(aurora.Magenta("\n  " + uri + " has already been downloaded"))
 		}
 
-		if extracted == true {
+		if extracted {
 			fmt.Println(aurora.Green("\n  Finished extracting:\n\t" + uri))
 		} else {
 			fmt.Println(aurora.Red("\n  There was a problem extracting: " + uri))
@@ -52,7 +60,7 @@ func scan(config Config) {
 		scanPath := path.Join(config.matchFolder, "info."+strconv.Itoa(index)+".txt")
 		analyzed := analyze(extractedPath, scanPath)
 
-		if analyzed == true {
+		if analyzed {
 			fmt.Println(aurora.Green("\n  Finished analyzing:\n\t" + extractedPath))
 			fmt.Println(aurora.Green("  Wrote results to" + scanPath))
 		} else {
