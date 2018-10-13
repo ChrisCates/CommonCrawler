@@ -44,11 +44,9 @@ func download(uri string, path string) error {
 
 func extract(path string) error {
 	//get extracted file path
-	fmt.Printf("Path is : %s\n", path)
 	_, fname := filepath.Split(path)
-	fmt.Printf("fname is : %s\n", fname)
 	ext := filepath.Ext(fname)
-	extractedPath := path[:len(ext)]
+	extractedPath := path[:len(path)-len(ext)]
 	//create extruction destination
 
 	out, err := os.Create(extractedPath)
