@@ -1,11 +1,12 @@
 package main
 
 import (
+	"compress/gzip"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
-	"os/exec"
+	"path/filepath"
 )
 
 func download(uri string, path string) error {
@@ -41,9 +42,38 @@ func download(uri string, path string) error {
 	return nil
 }
 
-func extract(path string) bool {
+func extract(path string) error {
+	//get extracted file path
+	_, fname := filepath.Split(path)
+	ext := filepath.Ext(fname)
+	extractedPath := path[:len(path)-len(ext)]
+	//create extruction destination
 
-	fmt.Println("Unzipping", path)
-	_, err := exec.Command("gunzip", path).CombinedOutput()
-	return err == nil
+	out, err := os.Create(extractedPath)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	//open gzip file
+	fi, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer fi.Close()
+	//create gz reader
+	fz, err := gzip.NewReader(fi)
+	if err != nil {
+		return err
+	}
+	defer fz.Close()
+
+	//write extracted to file
+	_, err = io.Copy(out, fz)
+	if err != nil {
+		return err
+	}
+
+	return nil
+
 }

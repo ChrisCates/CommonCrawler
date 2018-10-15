@@ -34,27 +34,22 @@ func scan(config Config) {
 
 		filePath := path.Join(config.dataFolder, "wetfile_"+strconv.Itoa(index)+".wet.gz")
 
-		fmt.Printf("Download uri %s", uri)
+		fmt.Printf("\n  Download uri %s\n\t", uri)
 		err := download(uri, filePath)
 		if err != nil {
-			fmt.Println(aurora.Red(fmt.Sprintf("Download was not successfull: %s", err)))
+			fmt.Println(aurora.Red(fmt.Sprintf("\n  Download was not successfull: %s\n\t", err)))
 			continue
 		}
 
-		extracted := true
+		fmt.Println(aurora.Green("\n  Download was successfull extracting:\n\t" + uri))
 
-		if _, err := os.Stat(filePath); os.IsNotExist(err) {
-			extracted = extract(filePath)
-		} else {
-			fmt.Println(aurora.Magenta("\n  " + uri + " has already been downloaded"))
+		err = extract(filePath)
+		if err != nil {
+			fmt.Println(aurora.Red(fmt.Sprintf("\n  Exctraction %s err: %s\n\t", filePath, err)))
+			continue
 		}
 
-		if extracted {
-			fmt.Println(aurora.Green("\n  Finished extracting:\n\t" + uri))
-		} else {
-			fmt.Println(aurora.Red("\n  There was a problem extracting: " + uri))
-			fmt.Println(aurora.Red("  Make sure to look into this file: " + filePath))
-		}
+		fmt.Println(aurora.Green("\n  Finished extracting:\n\t" + uri))
 
 		extractedPath := path.Join(config.dataFolder, "wetfile_"+strconv.Itoa(index)+".wet")
 		scanPath := path.Join(config.matchFolder, "info."+strconv.Itoa(index)+".txt")
