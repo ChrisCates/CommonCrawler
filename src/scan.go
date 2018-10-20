@@ -53,13 +53,17 @@ func scan(config Config) {
 
 		extractedPath := path.Join(config.dataFolder, "wetfile_"+strconv.Itoa(index)+".wet")
 		scanPath := path.Join(config.matchFolder, "info."+strconv.Itoa(index)+".txt")
-		analyzed := analyze(extractedPath, scanPath)
 
-		if analyzed {
-			fmt.Println(aurora.Green("\n  Finished analyzing:\n\t" + extractedPath))
-			fmt.Println(aurora.Green("  Wrote results to" + scanPath))
-		} else {
-			fmt.Println(aurora.Red("\n  There was a problem analyzing, make sure to look into this file:\n\t" + extractedPath))
+		err = analyzeFile(extractedPath, scanPath)
+
+		if err != nil {
+			fmt.Println(aurora.Red(fmt.Sprintf("\n  There was a problem analyzing, make sure to look into this file:\n\t%s\n", extractedPath)))
+			fmt.Println(aurora.Red(fmt.Sprintf("\t  The error is: %s", err)))
+			continue
 		}
+
+		fmt.Println(aurora.Green("\n  Finished analyzing:\n\t" + extractedPath))
+		fmt.Println(aurora.Green("  Wrote results to" + scanPath))
+
 	}
 }
