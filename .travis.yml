@@ -7,4 +7,6 @@ before_install:
   - go get github.com/logrusorgru/aurora
 
 script:
-  - go run src/*.go
+
+  - go run ./src/
+  - go test -v -race ./...
