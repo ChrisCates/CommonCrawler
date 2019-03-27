@@ -8,5 +8,5 @@ before_install:
 
 script:
 
-  - go run ./src/
+  - go build
   - go test -v -race ./...
