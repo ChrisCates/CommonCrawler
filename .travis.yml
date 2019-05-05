@@ -9,12 +9,12 @@ matrix:
     - os: windows
       go: 1.12.4
 
+services:
+  - docker
+
 before_install:
   - go get github.com/logrusorgru/aurora
 
 script:
 
-  - go build src/*.go
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./analyze;          fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./analyze;        fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./analyze.exe;  fi
+  - docker build -t commoncrawler .
