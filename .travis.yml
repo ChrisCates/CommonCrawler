@@ -15,6 +15,6 @@ before_install:
 script:
 
   - go run ./src/
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] ./analyze
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] ./analyze
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] ./analyze.exe
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; ./analyze;               fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./analyze;        fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./analyze.exe;  fi
