@@ -1,28 +1,50 @@
 # Common Crawler
 
-## A simple way to extract data from Common Crawl
+## 🕸 A simple and easy way to extract data from Common Crawl with little or no hassle.
 
-This repository has been revitalized with better logging and organization of respective components for extraction.
-
-[![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/CommonCrawler)](https://goreportcard.com/report/github.com/ChrisCates/CommonCrawler)
+![Go Version](https://img.shields.io/badge/Go-v1.1.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/ChrisCates/CommonCrawler.svg?branch=master)](https://travis-ci.org/ChrisCates/CommonCrawler)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/CommonCrawler)](https://goreportcard.com/report/github.com/ChrisCates/CommonCrawler)
 
-## Dependencies
 
-```bash
-go get -u github.com/logrusorgru/aurora # for colors
-```
+## As a command line tool
 
-## Running + Configuring
-
-1. To run the application:
+***This will be implemented soon, please review issues for Gitcoin bounties***
 
 ```bash
-# Will run the application
-go run src/*.go
+# Output help
+commoncrawler --help
+
+# Specify configuration
+commoncrawler --base-uri https://commoncrawl.s3.amazonaws.com/
+commoncrawler --wet-paths wet.paths
+commoncrawler --data-folder output/crawl-data
+commoncrawler --start 0
+commoncrawler --stop 5 # -1 will loop through all wet files from wet.paths
+
+# Start crawling the web
+commoncrawler start --stop -1
 ```
 
-2. Configure desired outputs and paths in `src/config.go`:
+## Compilation and Configuration
+
+### Installing dependencies
+
+```bash
+go get github.com/logrusorgru/aurora
+```
+
+### Running with docker
+
+```bash
+docker build -t commoncrawler .
+docker run -it commoncrawler
+```
+
+### Downloading data with the application
+
+First configure the type of data you want to extract.
 
 ```golang
 // Config is the preset variables for your extractor
@@ -46,18 +68,23 @@ Config{
 }
 ```
 
-3. Useful scripts:
+Then you can simply just build and run it as an executable.
 
 ```bash
-# clean.sh cleans up default output folders
-sh clean.sh
-
-# extract.sh runs the extracting application
-sh extract.sh
+go build src/*.go
+go install src/*.go
 ```
 
-### Additional Notes
+Or you can run simply just run it.
 
-* MIT Licensed :heart:
+```bash
+go run src/*.go
+```
 
-* Need help with things? Email hello@chriscates.ca
+### Resources
+
+- MIT Licensed
+
+- If people are interested or need it. I can create a documentation and tutorial page on https://commoncrawl.chriscates.ca
+
+- You can post issues if they are valid, and, I could potentially fund them based on priority.
