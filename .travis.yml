@@ -1,7 +1,13 @@
 language: go
 
-go:
-  - tip
+matrix:
+  include:
+    - os: linux
+      go: tip
+    - os: osx
+      go: tip
+    - os: windows
+      go: tip
 
 before_install:
   - go get github.com/logrusorgru/aurora
@@ -9,4 +15,6 @@ before_install:
 script:
 
   - go run ./src/
-  - go test -v -race ./...
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] ./analyze
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] ./analyze
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] ./analyze.exe
