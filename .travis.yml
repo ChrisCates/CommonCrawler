@@ -17,4 +17,6 @@ before_install:
 
 script:
 
-  - docker build -t commoncrawler .
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then go run src/*.go;                    fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker build -t commoncrawler .;  fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then docker build -t commoncrawler .;  fi
