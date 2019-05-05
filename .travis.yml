@@ -1,13 +1,12 @@
 language: go
 
-matrix:
-  include:
-    - os: linux
-      go: tip
-    - os: osx
-      go: tip
-    - os: windows
-      go: tip
+go:
+  - tip
+
+os:
+  - osx
+  - linux
+  - windows
 
 before_install:
   - go get github.com/logrusorgru/aurora
