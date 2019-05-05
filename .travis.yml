@@ -1,12 +1,26 @@
 language: go
 
-go:
-  - tip
+matrix:
+  include:
+    - os: linux
+      go: 1.12.4
+    - os: osx
+      go: 1.12.4
+    - os: windows
+      go: 1.12.4
+
+services:
+  - docker
 
 before_install:
   - go get github.com/logrusorgru/aurora
 
 script:
-
-  - go run ./src/
-  - go test -v -race ./...
+  # Enable Mac OS Dockerization once Docker is supported
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then go run src/*.go;                          fi
+  # Linux Docker build procedure
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker build -t commoncrawler .;        fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker container run commoncrawler;     fi
+  # Windows Docker build procedure
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then docker build -t commoncrawler .;      fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then docker container run commoncrawler;   fi

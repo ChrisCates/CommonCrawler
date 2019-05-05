@@ -2,11 +2,35 @@
 
 ## 🕸 A simple and easy way to extract data from Common Crawl with little or no hassle.
 
-![Go Version](https://img.shields.io/badge/Go-v1.1.0-blue.svg)
+![Go Version](https://img.shields.io/badge/Go-v1.12.4-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/ChrisCates/CommonCrawler.svg?branch=master)](https://travis-ci.org/ChrisCates/CommonCrawler)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/CommonCrawler)](https://goreportcard.com/report/github.com/ChrisCates/CommonCrawler)
 
+## As a library
+
+***This will be implemented soon, please review issues for Gitcoin bounties***
+
+Install as a dependency:
+
+```bash
+go get https://github.com/ChrisCates/CommonCrawler
+```
+
+Access the library functions by `import`ing it:
+
+```golang
+import(
+  cc "github.com/ChrisCates/CommonCrawler"
+)
+
+func main() {
+  cc.scan()
+  cc.download()
+  cc.extract()
+  // And so forth
+}
+```
 
 ## As a command line tool
 
