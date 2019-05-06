@@ -37,11 +37,11 @@ func scan(config Config) {
 		fmt.Printf("\n  Download uri %s\n\t", uri)
 		err := download(uri, filePath)
 		if err != nil {
-			fmt.Println(aurora.Red(fmt.Sprintf("\n  Download was not successfull: %s\n\t", err)))
+			fmt.Println(aurora.Red(fmt.Sprintf("\n  Download was not successful: %s\n\t", err)))
 			continue
 		}
 
-		fmt.Println(aurora.Green("\n  Download was successfull extracting:\n\t" + uri))
+		fmt.Println(aurora.Green("\n  Download was successful extracting:\n\t" + uri))
 
 		err = extract(filePath)
 		if err != nil {

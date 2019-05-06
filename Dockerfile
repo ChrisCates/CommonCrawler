@@ -4,7 +4,7 @@ FROM golang
 ENV GO111MODULE=on
 
 # Maintainer info
-LABEL maintainer="Onuwa Nnachi Isaac <matrix4u2002@gmail.com>"
+LABEL maintainer="Chris Cates <hello@chriscates.ca>, Onuwa Nnachi Isaac <matrix4u2002@gmail.com>"
 
 # Set current working directory inside the container
 WORKDIR /app
@@ -15,14 +15,8 @@ COPY . .
 # Download all dependencies
 RUN go get -d -v ./...
 
-# Install the packages
-RUN go install -v ./...
+# Install and build the package
+RUN go build -i -o ./dist/commoncrawler ./src/*.go
 
-RUN go run ./src/
-
-
-# Expose port 8080 for the container to connect to outside world
-EXPOSE 8080
-
-# RUN the executable
-CMD [ "CommonCrawler" ]
+# Run the binary
+CMD ["./dist/commoncrawler"]

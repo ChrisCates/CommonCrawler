@@ -36,6 +36,20 @@ func main() {
 
 ***This will be implemented soon, please review issues for Gitcoin bounties***
 
+Install from source:
+
+```bash
+go install  https://github.com/ChrisCates/CommonCrawler
+```
+
+Or you can curl from Github:
+
+```bash
+curl https://github.com/ChrisCates/CommonCrawler/raw/master/dist/commoncrawler -o commoncrawler
+```
+
+Then run as a binary:
+
 ```bash
 # Output help
 commoncrawler --help
@@ -57,13 +71,6 @@ commoncrawler start --stop -1
 
 ```bash
 go get github.com/logrusorgru/aurora
-```
-
-### Running with docker
-
-```bash
-docker build -t commoncrawler .
-docker run -it commoncrawler
 ```
 
 ### Downloading data with the application
@@ -92,11 +99,18 @@ Config{
 }
 ```
 
-Then you can simply just build and run it as an executable.
+### With Docker
 
 ```bash
-go build src/*.go
-go install src/*.go
+docker build -t commoncrawler .
+docker run commoncrawler
+```
+
+### Without Docker
+
+```bash
+go build -i -o ./dist/commoncrawler ./src/*.go
+./dist/commoncrawler
 ```
 
 Or you can run simply just run it.
