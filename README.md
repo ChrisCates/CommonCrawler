@@ -7,9 +7,15 @@
 [![Build Status](https://travis-ci.org/ChrisCates/CommonCrawler.svg?branch=master)](https://travis-ci.org/ChrisCates/CommonCrawler)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ChrisCates/CommonCrawler)](https://goreportcard.com/report/github.com/ChrisCates/CommonCrawler)
 
-## As a library
+### Notice in regards to development
 
-***This will be implemented soon, please review issues for Gitcoin bounties***
+Currently I do not have the capacity to hire full time, however, I do have the intention of hiring someone to help build infrastructure related to CommonCrawl. All Gitcoin bounties are currently on hold. When I do have time to further invest in this project, will discuss full time devops developer to work on said project. All payment will be done in DAI and resource allocation will be approximately 5k/mo.
+
+## As a GUI
+
+An electron based interface that works with a Go server will be available.
+
+## As a library
 
 Install as a dependency:
 
@@ -33,8 +39,6 @@ func main() {
 ```
 
 ## As a command line tool
-
-***This will be implemented soon, please review issues for Gitcoin bounties***
 
 Install from source:
 
