@@ -13,10 +13,10 @@ WORKDIR /app
 COPY . .
 
 # Download all dependencies
-RUN go get -d -v ./...
+RUN go mod download
 
-# Install and build the package
-RUN go build -i -o ./dist/commoncrawler ./src/*.go
+# build the package
+RUN go build -o ./dist/commoncrawler ./main.go
 
 # Run the binary
 CMD ["./dist/commoncrawler"]
