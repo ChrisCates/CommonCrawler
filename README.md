@@ -20,7 +20,7 @@ An electron based interface that works with a Go server will be available.
 Install as a dependency:
 
 ```bash
-go get https://github.com/ChrisCates/CommonCrawler
+go get github.com/ChrisCates/CommonCrawler/crawler
 ```
 
 Access the library functions by `import`ing it:
@@ -43,7 +43,7 @@ func main() {
 Install from source:
 
 ```bash
-go install  https://github.com/ChrisCates/CommonCrawler
+go install github.com/ChrisCates/CommonCrawler/crawler
 ```
 
 Or you can curl from Github:
