@@ -1,4 +1,4 @@
-package main
+package crawler
 
 import (
 	"bufio"
@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	aurora "github.com/logrusorgru/aurora"
+	"github.com/logrusorgru/aurora"
 )
 
 func analyzeFile(filePath string, path string) error {

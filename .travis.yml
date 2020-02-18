@@ -17,8 +17,8 @@ before_install:
 
 script:
   # Enable Mac OS Dockerization once Docker is supported
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];      then      go run src/*.go;                        fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];      then      go run crawler/*.go;                        fi
   # Linux Docker build procedure
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]];    then      docker build -t commoncrawler .;        fi
   # Enable Windows Dockerization once Docker has better support
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]];  then      go run src/*.go;                        fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]];  then      go run crawler/*.go;                        fi
