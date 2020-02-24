@@ -1,5 +1,5 @@
 # Start from golang v1.11 base image
-FROM golang
+FROM golang:alpine AS build
 
 ENV GO111MODULE=on
 
@@ -13,10 +13,22 @@ WORKDIR /app
 COPY . .
 
 # Download all dependencies
-RUN go get -d -v ./...
+RUN go mod download
 
-# Install and build the package
-RUN go build -i -o ./dist/commoncrawler ./src/*.go
+# build the package
+RUN go build -o common-crawler main.go
 
-# Run the binary
-CMD ["./dist/commoncrawler"]
+## build the smaller image
+FROM alpine
+
+LABEL maintainer="Chris Cates <hello@chriscates.ca>, Onuwa Nnachi Isaac <matrix4u2002@gmail.com>"
+
+WORKDIR /app
+
+COPY --from=build /app/common-crawler .
+COPY wet.paths .
+
+RUN apk add ca-certificates && \
+    chmod +x common-crawler
+
+CMD ["./common-crawler"]
